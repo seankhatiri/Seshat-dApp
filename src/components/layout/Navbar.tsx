@@ -13,7 +13,7 @@ import { withAccessibleKeysHandler } from "~/utils/react";
 
 import { ConnectButton } from "../swap/parts";
 
-const SatelliteLogo = () => {
+const SeshatLogo = () => {
   return (
     <div>
       <div className="relative flex items-center">
@@ -54,12 +54,12 @@ const NAV_ITEMS = [
     id: FAQ_MODAL,
     label: "FAQ",
   },
-  {
-    id: "pools",
-    label: "Pools",
-    type: "link",
-    href: "https://axelar.network/blog/liquidity-pools-for-bridged-assets-via-axelar",
-  },
+  // {
+  //   id: "pools",
+  //   label: "Pools",
+  //   type: "link",
+  //   href: "https://axelar.network/blog/liquidity-pools-for-bridged-assets-via-axelar",
+  // },
   {
     id: TOS_MODAL,
     label: "Terms of Use",
@@ -71,19 +71,19 @@ type NavItemProps = (typeof NAV_ITEMS)[number] & {
 };
 
 const NavItem: React.FC<NavItemProps> = (props) => {
-  if (props.type === "link") {
-    return (
-      <a
-        key={props.id}
-        href={props.href}
-        target="_blank"
-        rel="noopener noreferrer nofollow"
-        className="btn btn-link modal-button"
-      >
-        {props.label}
-      </a>
-    );
-  }
+  // if (props.type === "link") {
+  //   return (
+  //     <a
+  //       key={props.id}
+  //       href={props.href}
+  //       target="_blank"
+  //       rel="noopener noreferrer nofollow"
+  //       className="btn btn-link modal-button"
+  //     >
+  //       {props.label}
+  //     </a>
+  //   );
+  // }
 
   const handler = props.onModalIdChange.bind(null, props.id);
 
@@ -108,10 +108,10 @@ export const Navbar = () => {
     <div className="fixed w-full pt-5">
       <nav className="container flex items-center justify-between w-full px-4 mx-auto gap-x-5">
         <div className="flex w-full">
-          <SatelliteLogo />
+          <SeshatLogo />
 
           <div className="flex items-center w-full ml-10">
-            <div className="hidden space-x-2 lg:block">
+            <div className="hidden space-x-2 lg:block text-black">
               {NAV_ITEMS.map((item) => (
                 <NavItem key={item.id} {...item} onModalIdChange={setModalId} />
               ))}
