@@ -4,7 +4,6 @@ import Image from "next/image";
 import {
   FAQ_MODAL,
   GETTING_STARTED_MODAL,
-  SUPPORT_MODAL,
   TOS_MODAL,
 } from "~/config/constants";
 
@@ -21,12 +20,14 @@ const SatelliteLogo = () => {
         <div className="relative flex items-center w-11 h-11">
           <Image
             fill
-            src="/assets/ui/satellite.logo.svg"
-            alt="Satellite Logo"
+            src="/assets/ui/seshat.logo.svg"
+            alt="Seshat Logo"
           />
         </div>
         <div className="relative ml-4">
-          <div className="text-4xl font-bold">Satellite</div>
+          <a href="https://seshatlabs.xyz">
+          <div className="text-4xl font-bold text-black">Seshat </div>
+          </a>
           <div className="absolute">
             <a href="https://axelar.network">
               <Image
@@ -48,10 +49,6 @@ const NAV_ITEMS = [
   {
     id: GETTING_STARTED_MODAL,
     label: "Getting Started",
-  },
-  {
-    id: SUPPORT_MODAL,
-    label: "Support",
   },
   {
     id: FAQ_MODAL,

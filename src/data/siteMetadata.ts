@@ -1,25 +1,25 @@
 function getSiteUrl() {
   switch (process.env.NEXT_PUBLIC_ENVIRONMENT) {
     case "testnet":
-      return "https://testnet.satellite.money";
+      return "https://money.seshatlabs.xyz/testnet";
     case "mainnet":
-      return "https://satellite.money";
+      return "https://money.seshatlabs.xyz";
     default:
-      return "https://testnet.satellite.money";
+      return "https://money.seshatlabs.xyz";
   }
 }
 
 export const siteMetadata = {
-  title: "Satellite | Powered by Axelar Network",
+  title: "Seshat Money",
   description:
     "Transfer assets between EVM & Cosmos chains. Powered by the interchain infrastructure of Axelar Network.",
   language: "en-us",
   theme: "dark",
   siteUrl: getSiteUrl(),
-  siteLogo: "/fav.svg",
+  siteLogo: "/ui/seshat.logo.svg",
   socialBanner: "/social.jpg",
   locale: "en-US",
-  twitter: "@axelarcore",
+  twitter: "@seshatlabs",
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
