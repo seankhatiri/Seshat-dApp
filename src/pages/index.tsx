@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 
 import { ENVIRONMENT, UNDER_MAINTENANCE } from "~/config/constants";
 import { Layout, UnderMaintenance } from "~/components/layout";

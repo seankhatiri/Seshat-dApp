@@ -1,14 +1,19 @@
 import { useState } from "react";
 import {
-  getAdvertisements,
-  getRerank,
-} from "seshat-sdk"; //need to make the seshat-sdk typescript
+  AxelarAssetTransfer,
+  AxelarQueryAPI,
+} from "@axelar-network/axelarjs-sdk"; // needs to import seshat-sdk, fetch the ads here, handle as hook
 import { constants } from "ethers";
 
 import { ENVIRONMENT } from "~/config/constants";
 
 import { AssetConfigExtended } from "~/types";
 
+const assetTransfer = new AxelarAssetTransfer({
+  environment: ENVIRONMENT,
+  auth: "local",
+});
+const axelarQueryApi = new AxelarQueryAPI({ environment: ENVIRONMENT });
 
 interface DepositAddressPayload {
   fromChain: string;
