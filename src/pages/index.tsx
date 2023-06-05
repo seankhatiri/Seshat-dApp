@@ -1,6 +1,5 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 
 import { ENVIRONMENT, UNDER_MAINTENANCE } from "~/config/constants";
 import { Layout, UnderMaintenance } from "~/components/layout";
@@ -15,9 +14,6 @@ import { useNormalizeChains, useNormalizeUrlPaths } from "~/hooks";
 import { useInitialChainList } from "~/hooks/init";
 import { drawBackground } from "~/hooks/particle";
 
-const VideoBackground = dynamic(
-  () => import("~/components/layout/VideoBackground")
-);
 
 const Home: NextPage = () => {
   const allAssets = useSwapStore((state) => state.allAssets);
@@ -43,10 +39,8 @@ const Home: NextPage = () => {
         description={siteMetadata.description}
         keywords="axelar satellite, cross chain bridge, axelar"
       />
-      <canvas id="canvas" className="absolute w-screen h-screen -z-5 " />
-      <Layout>
-        <VideoBackground />
-
+      <div style={{ backgroundColor: 'white' }}>
+        <Layout>
         {UNDER_MAINTENANCE ? (
           <UnderMaintenance />
         ) : (
@@ -62,7 +56,8 @@ const Home: NextPage = () => {
             </div>
           </>
         )}
-      </Layout>
+        </Layout>
+      </div>
     </>
   );
 };
