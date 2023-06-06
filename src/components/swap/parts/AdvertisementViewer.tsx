@@ -1,21 +1,27 @@
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { InputWrapper } from "~/components/common";
 
+import { useSwapStore } from "~/store";
+
 export const AdvertisementViewer = () => {
   const [showModal, setShowModal] = useState(false);
+  const destAddress = useSwapStore((state) => state.destAddress);
 
   const Icon = ({ src = "", alt = "" }) => (
     <Image src={src} alt={alt} width={35} height={35} />
   );
 
-  const EthereumIcon = () => (
-    <Icon src="/assets/chains/ethereum.logo.svg" alt="Ethereum" />
-  );
   const AxelarIcon = () => (
     <Icon src="/assets/chains/axelar.logo.svg" alt="Axelar" />
   );
+
+  const handleAxelarLink = () => {
+    // Save dest address in DB
+    console.log(destAddress);
+  };
 
   return (
     <InputWrapper style={{ backgroundColor: "white" }}>
@@ -33,12 +39,18 @@ export const AdvertisementViewer = () => {
         {showModal ? (
           <div className="mt-10 flex justify-center items-center flex-col rounded-lg shadow-2xl h-auto p-2 bg-gray-300">
             <div className="ml-0 mr-auto">
-              <h1 className="text-base mt-2 mx-4 text-gray-400 font-semibold text-left">
+              <span className="text-base mt-2 mx-4 text-gray-400 font-semibold text-left">
                 Axelar Mission
                 <p className="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-600 text-white-700 rounded-full">
                   Recommended
                 </p>
-              </h1>
+              </span>
+              <button
+                className="text-sm my-5 w-auto px-5 h-10 bg-blue-600 text-white rounded-md shadow hover:shadow-lg font-semibold"
+                onClick={() => setShowModal(false)}
+              >
+                Continue Transfer
+              </button>
             </div>
             <div className="mt-2 flex justify-between mb-1">
               <span className="text-base font-medium text-blue-700 dark:text-white">
@@ -59,7 +71,15 @@ export const AdvertisementViewer = () => {
             <div>
               Missions
               <div className="grid w-80 h-20 rounded bg-primary text-primary-content place-content-center">
-                Know more about Axelar
+                <p className="mt-2">Know more about Axelar </p>
+                <Link href="https://axelar.network/" target="_blank">
+                  <button
+                    onClick={handleAxelarLink}
+                    className="text-sm my-2 px-5 w-auto h-auto bg-blue-600 text-white rounded-md shadow hover:shadow-lg font-semibold"
+                  >
+                    axelar.network
+                  </button>
+                </Link>
               </div>
               <div className="grid w-80 h-20 rounded bg-accent text-accent-content place-content-center">
                 Twitter:
@@ -74,18 +94,6 @@ export const AdvertisementViewer = () => {
                 </p>
               </div>
             </div>
-
-            <EthereumIcon />
-            <h2 className="text-base mt-2 mx-4 text-gray-400 font-semibold text-center">
-              May your life be filled with success and achievements.
-              Congratulations!
-            </h2>
-            <button
-              className="my-5 w-auto px-8 h-10 bg-blue-600 text-white rounded-md shadow hover:shadow-lg font-semibold"
-              onClick={() => setShowModal(false)}
-            >
-              Close
-            </button>
           </div>
         ) : null}
       </div>
