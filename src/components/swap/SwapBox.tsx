@@ -94,8 +94,8 @@ export const SwapBox = () => {
           </div>
         </Blockable>
 
-        {isSquidTrade ? <SquidSwapBtn /> : <GetAddressBtn />}
         <ReduceFeeBtn />
+        {isSquidTrade ? <SquidSwapBtn /> : <GetAddressBtn />}
       </div>
     </div>
   );
