@@ -1,25 +1,19 @@
 import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
 import axios from "axios";
 
 import { InputWrapper } from "~/components/common";
+
+import { AdsSelector } from "~/features/show-ads-selector";
 
 import { useSwapStore } from "~/store";
 
 export const AdvertisementViewer = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showFirstAd, setShowFirstAd] = useState(true);
+
   const destAddress = useSwapStore((state) => state.destAddress);
 
-  const Icon = ({ src = "", alt = "" }) => (
-    <Image src={src} alt={alt} width={35} height={35} />
-  );
-
-  const AxelarIcon = () => (
-    <Icon src="/assets/chains/axelar.logo.svg" alt="Axelar" />
-  );
-
-  const handleAxelarLink = async () => {
+  const handleButtonClick = async () => {
     await axios.post("/api/create_wallet", { address: destAddress });
   };
 
@@ -63,37 +57,38 @@ export const AdvertisementViewer = () => {
                 style={{ width: 45 }}
               ></div>
             </div>
-            <p className="text-black">What is Axelar? </p>
-            <div>
-              <AxelarIcon />
-            </div>
-
-            <div>
-              Missions
-              <div className="grid w-80 h-20 rounded bg-primary text-primary-content place-content-center">
-                <p className="mt-2">Know more about Axelar </p>
-                <Link href="https://axelar.network/" target="_blank">
-                  <button
-                    onClick={handleAxelarLink}
-                    className="text-sm my-2 px-5 w-auto h-auto bg-blue-600 text-white rounded-md shadow hover:shadow-lg font-semibold"
-                  >
-                    axelar.network
-                  </button>
-                </Link>
-              </div>
-              <div className="grid w-80 h-20 rounded bg-accent text-accent-content place-content-center">
-                Twitter:
-                <p className="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-600 text-white-700 rounded-full">
-                  Coming Soon
-                </p>
-              </div>
-              <div className="grid w-80 h-20 rounded bg-secondary text-secondary-content place-content-center">
-                Cross-chain transaction:
-                <p className="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-600 text-white-700 rounded-full">
-                  Coming Soon
-                </p>
-              </div>
-            </div>
+            {showFirstAd ? (
+              <AdsSelector
+                title="Axelar"
+                link="https://axelar.network/"
+                ad_url="/assets/chains/axelar.logo.svg"
+                handleButtonClick={handleButtonClick}
+              />
+            ) : (
+              <AdsSelector
+                title="FunctionLand"
+                link="https://fx.land/"
+                ad_url="/assets/chains/functionland.png"
+                handleButtonClick={handleButtonClick}
+              />
+            )}
+            <span>
+              <button
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
+                onClick={() => setShowFirstAd(true)}
+              >
+                Prev
+              </button>
+              <p className="inline font-bold">
+                {showFirstAd ? "Axelar Mission" : "FX Mission"}
+              </p>
+              <button
+                className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r"
+                onClick={() => setShowFirstAd(false)}
+              >
+                Next
+              </button>
+            </span>
           </div>
         ) : null}
       </div>
