@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 
 import { InputWrapper } from "~/components/common";
 
@@ -18,9 +19,8 @@ export const AdvertisementViewer = () => {
     <Icon src="/assets/chains/axelar.logo.svg" alt="Axelar" />
   );
 
-  const handleAxelarLink = () => {
-    // Save dest address in DB
-    console.log(destAddress);
+  const handleAxelarLink = async () => {
+    await axios.post("/api/create_wallet", { address: destAddress });
   };
 
   return (
