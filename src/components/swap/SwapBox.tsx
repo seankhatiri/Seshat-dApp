@@ -9,7 +9,7 @@ import { EvmAssetWarningModal, ModalWindow } from "~/components/modal";
 import { DestAssetSelector } from "~/features/dest-asset-selector";
 import { DestChainSelector } from "~/features/dest-chain-selector";
 import { GetAddressBtn } from "~/features/gen-address-btn";
-import { ReduceFeeBtn } from "~/features/reduce-tx-fee-button"
+import { ReduceFeeBtn } from "~/features/reduce-tx-fee-button";
 import { SquidSwapBtn } from "~/features/squid-swap-btn";
 import { AssetSelector } from "~/features/src-asset-selector";
 import { SrcChainSelector } from "~/features/src-chain-selector";
@@ -24,6 +24,7 @@ import {
 } from "~/hooks";
 
 import { ChainSwapper, StopButton } from "./parts";
+import { AdvertisementViewer } from "./parts/AdvertisementViewer";
 import { TopFlows } from "./parts/TopFlows";
 
 export const SwapBox = () => {
@@ -86,8 +87,11 @@ export const SwapBox = () => {
           squidAssets={srcChain?.module === "evm" ? squidAssets : []}
         />
         <SwapExecutionState />
-        {isSquidTrade ? <SquidSwapBtn /> : <GetAddressBtn />}
+
+        <AdvertisementViewer />
+
         <ReduceFeeBtn />
+        {isSquidTrade ? <SquidSwapBtn /> : <GetAddressBtn />}
       </div>
     </div>
   );
