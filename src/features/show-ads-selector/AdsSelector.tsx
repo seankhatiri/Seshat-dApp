@@ -1,58 +1,88 @@
 import Image from "next/image";
-import Link from "next/link";
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Button,
+  HStack,
+  Progress,
+  Tag,
+  Text,
+} from "@chakra-ui/react";
+
+interface MissionProps {
+  title: string;
+  content: any;
+  id: string;
+}
 
 interface AdsSelectorProps {
   title: string;
-  link: string;
-  ad_url: string;
-  handleButtonClick: any;
+  adUrl: string;
+  isRecommended: boolean;
+  progress: number;
+  missions: Array<MissionProps>;
 }
 
 export const AdsSelector: React.FC<AdsSelectorProps> = ({
   title,
-  link,
-  ad_url,
-  handleButtonClick,
+  adUrl,
+  missions,
+  isRecommended,
+  progress,
 }) => {
   const Icon = ({ src = "", alt = "" }) => (
-    <Image src={src} alt={alt} width={35} height={35} />
+    <Image src={src} alt={alt} width={100} height={100} className="mx-auto" />
   );
 
-  const Ad = () => <Icon src={ad_url} alt="advertisement" />;
+  const Ad = () => <Icon src={adUrl} alt="advertisement" />;
 
   return (
-    <>
-      <p className="text-black font-bold">{title}</p>
-      <div>
+    <Box>
+      <HStack justify="space-between">
+        <Box py="4">
+          <Text as="b" color="black">
+            {title} Mission
+            {isRecommended ? (
+              <Tag variant="solid" colorScheme="blue" mx="2">
+                <Text as="b">Recommended </Text>
+              </Tag>
+            ) : (
+              <></>
+            )}
+          </Text>
+        </Box>
+      </HStack>
+      <Progress value={progress} my="2" />
+      <Text as="b" color="black" align="center">
+        {title}
+      </Text>
+      <Box>
         <Ad />
-      </div>
-
-      <div>
-        Missions
-        <div className="grid w-80 h-20 rounded bg-primary text-primary-content place-content-center">
-          <p className="mt-2">Know more about {title} </p>
-          <Link href={link} target="_blank">
-            <button
-              onClick={handleButtonClick}
-              className="text-sm my-2 px-5 w-auto h-auto bg-blue-600 text-white rounded-md shadow hover:shadow-lg font-semibold"
-            >
-              Know more about {title}
-            </button>
-          </Link>
-        </div>
-        <div className="grid w-80 h-20 rounded bg-accent text-accent-content place-content-center">
-          Twitter:
-          <p className="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-600 text-white-700 rounded-full">
-            Coming Soon
-          </p>
-        </div>
-        <div className="grid w-80 h-20 rounded bg-secondary text-secondary-content place-content-center">
-          Cross-chain transaction:
-          <p className="ml-4 text-xs inline-flex items-center font-bold leading-sm uppercase px-3 py-1 bg-blue-600 text-white-700 rounded-full">
-            Coming Soon
-          </p>
-        </div>
-      </div>
-    </>
+      </Box>
+      <Box py="4">
+        <Text color="black" as="b">
+          Missions
+        </Text>
+      </Box>
+      <Accordion allowToggle>
+        {missions.map((mission) => (
+          <AccordionItem key={mission.id}>
+            <h2>
+              <AccordionButton>
+                <Box as="span" flex="1" textAlign="left">
+                  <Text color="black">{mission.title}</Text>
+                </Box>
+                <AccordionIcon as={Button} />
+              </AccordionButton>
+            </h2>
+            <AccordionPanel pb={4}>{mission.content}</AccordionPanel>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </Box>
   );
 };
