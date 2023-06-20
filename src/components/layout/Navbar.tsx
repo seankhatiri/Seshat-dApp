@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 
 import {
-  ADS_MODAL,
   FAQ_MODAL,
   GETTING_STARTED_MODAL,
   TOS_MODAL,
