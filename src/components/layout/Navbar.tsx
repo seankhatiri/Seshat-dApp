@@ -18,15 +18,11 @@ const SeshatLogo = () => {
     <div>
       <div className="relative flex items-center">
         <div className="relative flex items-center w-11 h-11">
-          <Image
-            fill
-            src="/assets/ui/seshat.logo.svg"
-            alt="Seshat Logo"
-          />
+          <Image fill src="/assets/ui/seshat.logo.svg" alt="Seshat Logo" />
         </div>
         <div className="relative ml-4">
           <a href="https://seshatlabs.xyz">
-          <div className="text-4xl font-bold text-black">Seshat </div>
+            <div className="text-4xl font-bold text-black">Seshat </div>
           </a>
           <div className="absolute">
             <a href="https://axelar.network">
@@ -92,7 +88,7 @@ const NavItem: React.FC<NavItemProps> = (props) => {
       role="button"
       key={props.id}
       htmlFor={props.id}
-      className="btn btn-link modal-button"
+      className="btn btn-link modal-button bg-blue-400"
       onClick={handler}
       onKeyDown={withAccessibleKeysHandler(handler)}
     >

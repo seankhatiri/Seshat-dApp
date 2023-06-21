@@ -1,4 +1,5 @@
 import type { AppProps } from "next/app";
+import { ChakraProvider } from "@chakra-ui/react";
 import {
   StaticWalletProvider,
   WalletControllerChainOptions,
@@ -44,12 +45,14 @@ function MyApp({
   const main = (
     <QueryClientProvider client={queryClient}>
       <WagmiConfig client={wagmiClient}>
-        <Component {...pageProps} />
-        <Web3Modal />
-        <GlobalHooksContainer />
-        {process.env.NEXT_PUBLIC_ENVIRONMENT === "mainnet" && (
-          <GoogleAnalytics />
-        )}
+        <ChakraProvider>
+          <Component {...pageProps} />
+          <Web3Modal />
+          <GlobalHooksContainer />
+          {process.env.NEXT_PUBLIC_ENVIRONMENT === "mainnet" && (
+            <GoogleAnalytics />
+          )}
+        </ChakraProvider>
       </WagmiConfig>
       <Toaster position="top-right" reverseOrder={false} />
     </QueryClientProvider>

@@ -24,7 +24,6 @@ import {
 } from "~/hooks";
 
 import { ChainSwapper, StopButton } from "./parts";
-import { AdvertisementViewer } from "./parts/AdvertisementViewer";
 import { TopFlows } from "./parts/TopFlows";
 
 export const SwapBox = () => {
@@ -87,8 +86,6 @@ export const SwapBox = () => {
           squidAssets={srcChain?.module === "evm" ? squidAssets : []}
         />
         <SwapExecutionState />
-
-        <AdvertisementViewer />
 
         <ReduceFeeBtn />
         {isSquidTrade ? <SquidSwapBtn /> : <GetAddressBtn />}

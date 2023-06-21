@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-import { FAQ_MODAL, TOS_MODAL } from "~/config/constants";
+import {FAQ_MODAL, TOS_MODAL } from "~/config/constants";
 
 import { useApplicationStateStore } from "~/store";
 
